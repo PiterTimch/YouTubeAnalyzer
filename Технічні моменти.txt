@@ -1,0 +1,5 @@
+База даних:
+postgresql://neondb_owner:npg_zlQnApPi62Ry@ep-orange-art-a2mumvqw-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require
+
+Ютуб API-Key:
+AIzaSyD47--AaziWzA7uETvJLnACLk9EFHtYz9I
