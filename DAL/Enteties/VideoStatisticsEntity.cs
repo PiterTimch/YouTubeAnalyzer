@@ -3,15 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Enteties
 {
-    [Table("channel_statistics_tbl")]
-    public class ChannelStatisticsEntity
+    public class VideoStatisticsEntity
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string ChannelName { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(255)]
@@ -21,9 +20,13 @@ namespace DAL.Enteties
         public int ViewsCount { get; set; }
 
         [Range(0, int.MaxValue)]
-        public int SubsCount { get; set; }
+        public int LikesCount { get; set; }
 
         [Range(0, int.MaxValue)]
-        public int VideosCount { get; set; }
+        public int CommentsCount { get; set; }
+
+        [ForeignKey("Channel")]
+        public int ChannelId { get; set; }
+        public ChannelStatisticsEntity Channel { get; set; }
     }
 }
