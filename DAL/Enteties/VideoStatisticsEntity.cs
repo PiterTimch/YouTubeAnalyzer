@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Enteties
 {
+    [Table("video_statistics_tbl")]
     public class VideoStatisticsEntity
     {
         [Key]
