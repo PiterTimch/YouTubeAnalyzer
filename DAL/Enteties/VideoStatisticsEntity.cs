@@ -31,7 +31,7 @@ namespace DAL.Enteties
         public int CommentsCount { get; set; }
 
         [ForeignKey("Channel")]
-        public int ChannelId { get; set; }
-        public ChannelStatisticsEntity Channel { get; set; }
+        public int? ChannelId { get; set; }
+        public ChannelStatisticsEntity? Channel { get; set; }
     }
 }

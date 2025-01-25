@@ -1,4 +1,5 @@
-﻿using DAL.Repositories;
+﻿using BLL.Models.DTOs;
+using BLL.Services;
 
 namespace TestConsoleApp
 {
@@ -6,9 +7,11 @@ namespace TestConsoleApp
     {
         static async Task Main(string[] args)
         {
-            YouTubeApiClient apiClient = new YouTubeApiClient();
+            YouTubeApiTransferClient apiClient = new YouTubeApiTransferClient();
+            YouTubeStatisticsService statisticsService = new YouTubeStatisticsService();
 
-            await apiClient.GetVideoStatisticsAsync("-mxhWiG9L-I");
+            VideoStatisticsDTO video = await apiClient.GetVideoStatisticsAsync("-mxhWiG9L-I");
+            await statisticsService.AddVideoAsync(video);
         }
     }
 }

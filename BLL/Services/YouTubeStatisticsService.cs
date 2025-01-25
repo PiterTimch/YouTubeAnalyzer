@@ -3,6 +3,7 @@ using BLL.Interfaces;
 using BLL.Mapping;
 using BLL.Models.DTOs;
 using DAL.Enteties;
+using DAL.Interfaces;
 using DAL.Repositories;
 
 namespace BLL.Services
@@ -51,7 +52,7 @@ namespace BLL.Services
             return (await this._repository.GetAllVideosAsync()).Select(v => this._mapper.Map<VideoStatisticsDTO>(v)).ToList();
         }
 
-        private YouTubeStatisticsRepository _repository;
+        private IYouTubeStatisticsRepository _repository;
         private readonly IMapper _mapper;
     }
 }

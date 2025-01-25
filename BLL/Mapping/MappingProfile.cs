@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BLL.Models.DTOs;
+using DAL.Enteties;
 using DAL.Enteties.API_Entities.Channel;
+using DAL.Enteties.API_Entities.Video;
 
 namespace BLL.Mapping
 {
@@ -8,13 +10,13 @@ namespace BLL.Mapping
     {
         public MappingProfile() 
         {
-            CreateMap<ChannelStatisticsDTO, ChannelItemResponseEntity>()
+            CreateMap<ChannelStatisticsDTO, ChannelStatisticsEntity>()
                 .ForMember(d => d.Id, o => o.Ignore());
-            CreateMap<ChannelItemResponseEntity, ChannelStatisticsDTO>();
+            CreateMap<ChannelStatisticsEntity, ChannelStatisticsDTO>();
 
-            CreateMap<VideoStatisticsDTO, VideoStatisticsDTO>()
+            CreateMap<VideoStatisticsDTO, VideoStatisticsEntity>()
                 .ForMember(d => d.Id, o => o.Ignore());
-            CreateMap<VideoStatisticsDTO, VideoStatisticsDTO>();
+            CreateMap<VideoStatisticsEntity, VideoStatisticsDTO>();
         }
     }
 }

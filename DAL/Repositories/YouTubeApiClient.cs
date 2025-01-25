@@ -3,13 +3,14 @@ using DAL.Enteties;
 using DAL.Enteties.API_Entities;
 using DAL.Enteties.API_Entities.Channel;
 using DAL.Enteties.API_Entities.Video;
+using DAL.Interfaces;
 using Newtonsoft.Json;
 using System.Text.Json;
 using System.Threading.Channels;
 
 namespace DAL.Repositories
 {
-    public class YouTubeApiClient
+    public class YouTubeApiClient : IYouTubeApiClient
     {
         public YouTubeApiClient() 
         {
