@@ -20,7 +20,7 @@ namespace DAL.Enteties.API_Entities.Channel
 
     public class StatisticsChannelEntity
     {
-        public string ViewCount { get; set; } = string.Empty;
+        public string ChannelId { get; set; } = string.Empty; //для url
         public string SubscriberCount { get; set; } = string.Empty;
         public string VideoCount { get; set; } = string.Empty;
     }
