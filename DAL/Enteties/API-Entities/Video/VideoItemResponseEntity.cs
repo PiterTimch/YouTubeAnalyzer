@@ -3,6 +3,7 @@ namespace DAL.Enteties.API_Entities.Video
 {
     public class VideoItemResponseEntity
     {
+        public string Id { get; set; } = string.Empty;
         public SnippetVideoEntity Snippet { get; set; }
         public StatisticsVideoEntity Statistics { get; set; }
     }
@@ -10,7 +11,6 @@ namespace DAL.Enteties.API_Entities.Video
     public class SnippetVideoEntity 
     {
         public string Title { get; set; } = string.Empty;
-        public string ChannelId { get; set; } = string.Empty; // для url
     }
 
     public class StatisticsVideoEntity 
