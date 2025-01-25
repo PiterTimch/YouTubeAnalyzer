@@ -20,21 +20,29 @@ namespace DAL.Repositories
         public async Task AddChannelAsync(ChannelStatisticsEntity item)
         {
             await this._context.Channels.AddAsync(item);
+            await this._context.SaveChangesAsync();
         }
 
         public async Task AddVideoAsync(VideoStatisticsEntity item)
         {
+            if (await this._context.Channels.FirstOrDefaultAsync(c => c.Url == item.ChannelUrl) != null) 
+            {
+                item.Channel = await this._context.Channels.FirstOrDefaultAsync(c => c.Url == item.ChannelUrl);
+            }
             await this._context.Videos.AddAsync(item);
+            await this._context.SaveChangesAsync();
         }
 
-        public void DeleteChannel(ChannelStatisticsEntity item)
+        public async Task DeleteChannelAsync(ChannelStatisticsEntity item)
         {
             this._context.Channels.Remove(item);
+            await this._context.SaveChangesAsync();
         }
 
-        public void DeleteVideo(VideoStatisticsEntity item)
+        public async Task DeleteVideoAsync(VideoStatisticsEntity item)
         {
             this._context.Videos.Remove(item);
+            await this._context.SaveChangesAsync();
         }
 
         public async Task<ICollection<ChannelStatisticsEntity>> GetAllChannelsAsync()

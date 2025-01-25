@@ -11,6 +11,7 @@ namespace DAL.Enteties.API_Entities.Video
     public class SnippetVideoEntity 
     {
         public string Title { get; set; } = string.Empty;
+        public string ChannelId { get; set; } = string.Empty;
     }
 
     public class StatisticsVideoEntity 

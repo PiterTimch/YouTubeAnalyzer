@@ -8,7 +8,7 @@ namespace TestConsoleApp
         {
             YouTubeApiClient apiClient = new YouTubeApiClient();
 
-            await apiClient.GetChannelStatisticsAsync("UC3SdeibuuvF-ganJesKyDVQ");
+            await apiClient.GetVideoStatisticsAsync("-mxhWiG9L-I");
         }
     }
 }

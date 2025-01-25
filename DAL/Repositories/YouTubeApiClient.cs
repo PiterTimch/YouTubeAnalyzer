@@ -2,8 +2,10 @@
 using DAL.Enteties;
 using DAL.Enteties.API_Entities;
 using DAL.Enteties.API_Entities.Channel;
+using DAL.Enteties.API_Entities.Video;
 using Newtonsoft.Json;
 using System.Text.Json;
+using System.Threading.Channels;
 
 namespace DAL.Repositories
 {
@@ -47,6 +49,39 @@ namespace DAL.Repositories
             return channelEntity;
         }
 
+        public async Task<VideoStatisticsEntity> GetVideoStatisticsAsync(string videoId) 
+        {
+            string requestUrl = $"{DataAccessConstants.ApiUrl}videos?part=snippet,statistics&id={videoId}&key={DataAccessConstants.ApiKey}";
+
+            HttpResponseMessage response = await _httpClient.GetAsync(requestUrl);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException($"Request failed with status code {response.StatusCode}");
+            }
+
+            string jsonResponse = await response.Content.ReadAsStringAsync();
+
+            var videoResponse = JsonConvert.DeserializeObject<StandartResponse<VideoItemResponseEntity>>(jsonResponse);
+            VideoItemResponseEntity? item = videoResponse?.Items.FirstOrDefault(v => v.Id == videoId);
+
+            if (item == null)
+            {
+                throw new Exception("Invalid data");
+            }
+
+            var videoEntity = new VideoStatisticsEntity
+            {
+                Title = item.Snippet.Title,
+                Url = $"https://www.youtube.com/watch?v={item.Id}",
+                CommentsCount = Int32.Parse(item.Statistics.CommentCount),
+                LikesCount = Int32.Parse(item.Statistics.LikeCount),
+                ViewsCount = Int32.Parse(item.Statistics.ViewCount),
+                ChannelUrl = $"https://www.youtube.com/channel/{item.Snippet.ChannelId}"
+            };
+
+            return videoEntity;
+        }
 
         private readonly HttpClient _httpClient;
     }

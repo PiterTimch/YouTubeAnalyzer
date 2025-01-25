@@ -17,6 +17,10 @@ namespace DAL.Enteties
         [MaxLength(255)]
         public string Url { get; set; } = string.Empty;
 
+        [Required]
+        [MaxLength(255)]
+        public string ChannelUrl { get; set; } = string.Empty;
+
         [Range(0, int.MaxValue)]
         public int ViewsCount { get; set; }
 
