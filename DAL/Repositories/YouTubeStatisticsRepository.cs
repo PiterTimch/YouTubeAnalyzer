@@ -1,6 +1,7 @@
 ﻿using DAL.Contexts;
 using DAL.Enteties;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,14 @@ namespace DAL.Repositories
             this._context = new YouTubeAnalyticsContext();
         }
 
-        public void AddChannel(ChannelStatisticsEntity item)
+        public async Task AddChannelAsync(ChannelStatisticsEntity item)
         {
-            this._context.Channels.Add(item);
+            await this._context.Channels.AddAsync(item);
         }
 
-        public void AddVideo(VideoStatisticsEntity item)
+        public async Task AddVideoAsync(VideoStatisticsEntity item)
         {
-            this._context.Videos.Add(item);
+            await this._context.Videos.AddAsync(item);
         }
 
         public void DeleteChannel(ChannelStatisticsEntity item)
@@ -36,14 +37,14 @@ namespace DAL.Repositories
             this._context.Videos.Remove(item);
         }
 
-        public ICollection<ChannelStatisticsEntity> GetAllChannels()
+        public async Task<ICollection<ChannelStatisticsEntity>> GetAllChannelsAsync()
         {
-            return this._context.Channels.ToList();
+            return await this._context.Channels.ToListAsync();
         }
 
-        public ICollection<VideoStatisticsEntity> GetAllVideos()
+        public async Task<ICollection<VideoStatisticsEntity>> GetAllVideosAsync()
         {
-            return this._context.Videos.ToList();
+            return await this._context.Videos.ToListAsync();
         }
 
         private YouTubeAnalyticsContext _context;

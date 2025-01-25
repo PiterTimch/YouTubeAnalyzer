@@ -4,12 +4,12 @@ namespace DAL.Interfaces
 {
     public interface IYouTubeStatisticsRepository
     {
-        ICollection<ChannelStatisticsEntity> GetAllChannels();
-        void AddChannel(ChannelStatisticsEntity item);
+        Task<ICollection<ChannelStatisticsEntity>> GetAllChannelsAsync();
+        Task AddChannelAsync(ChannelStatisticsEntity item);
         void DeleteChannel(ChannelStatisticsEntity item);
 
-        ICollection<VideoStatisticsEntity> GetAllVideos();
-        void AddVideo(VideoStatisticsEntity item);
+        Task<ICollection<VideoStatisticsEntity>> GetAllVideosAsync();
+        Task AddVideoAsync(VideoStatisticsEntity item);
         void DeleteVideo(VideoStatisticsEntity item);
     }
 }
