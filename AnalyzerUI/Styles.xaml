@@ -30,6 +30,15 @@
         <Setter Property="FontSize" Value="28"></Setter>
     </Style>
 
+    <Style TargetType="Hyperlink" x:Key="HyperlinkStyle">
+        <Setter Property="FontFamily" Value="{DynamicResource MainFont}"></Setter>
+        <Setter Property="FontSize" Value="60"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource DarkText}"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="28"></Setter>
+        <Setter Property="TextDecorations" Value="{x:Null}" />
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="h3" BasedOn="{StaticResource StandartText}">
         <Setter Property="FontSize" Value="14"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource LightText}"></Setter>
@@ -114,10 +123,13 @@
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
-    <Style TargetType="Image" x:Key="MenuIcon">
+    <Style TargetType="Image" x:Key="StandartImage">
         <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Stretch" Value="Uniform" />
+    </Style>
+
+    <Style TargetType="Image" x:Key="MenuIcon" BasedOn="{StaticResource StandartImage}">
         <Setter Property="Width" Value="60" />
         <Setter Property="Margin" Value="0,0,10,0" />
     </Style>
