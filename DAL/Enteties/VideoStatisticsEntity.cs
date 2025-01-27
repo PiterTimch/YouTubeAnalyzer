@@ -30,6 +30,14 @@ namespace DAL.Enteties
         [Range(0, int.MaxValue)]
         public int CommentsCount { get; set; }
 
+        [Required]
+        [MaxLength(255)]
+        public string PreviewUrl { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(255)]
+        public string Description { get; set; } = string.Empty;
+
         [ForeignKey("Channel")]
         public int? ChannelId { get; set; }
         public ChannelStatisticsEntity? Channel { get; set; }

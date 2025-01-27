@@ -17,6 +17,14 @@ namespace DAL.Enteties
         [MaxLength(255)]
         public string Url { get; set; } = string.Empty;
 
+        [Required]
+        [MaxLength(255)]
+        public string AvatarUrl { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(255)]
+        public string Description { get; set; } = string.Empty;
+
         [Range(0, int.MaxValue)]
         public int ViewsCount { get; set; }
 
