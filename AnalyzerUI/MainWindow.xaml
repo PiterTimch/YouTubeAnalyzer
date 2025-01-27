@@ -6,11 +6,20 @@
         xmlns:local="clr-namespace:AnalyzerUI"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="720" MinWidth="1280">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderBrush="{DynamicResource LightText}" BorderThickness="0,0,0,1" />
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -18,50 +27,59 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button>Меню</Button>
-                <TextBlock>YouTubeAnalyzer</TextBlock>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Button Style="{DynamicResource StyledButton}" BorderThickness="0" FontSize="48">☰</Button>
+                <TextBlock Style="{DynamicResource h1}">YouTubeAnalyzer</TextBlock>
             </StackPanel>
 
-            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBox>Search</TextBox>
-                <Button>⌕</Button>
-                <ComboBox></ComboBox>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBox Style="{DynamicResource StyledTextBox}">Search</TextBox>
+                <Button Style="{DynamicResource StyledButton}" Margin="10,20" FontSize="40" Width="50">⌕</Button>
+                <ComboBox Style="{DynamicResource StyledComboBox}">
+                    <ItemsControl>
+                        <TextBlock>Video</TextBlock>
+                    </ItemsControl>
+                    <ItemsControl>
+                        <TextBlock>Channel</TextBlock>
+                    </ItemsControl>
+                </ComboBox>
             </StackPanel>
         </Grid>
         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                <ColumnDefinition Width="0.35*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            
+            <Border Grid.Column="0" BorderBrush="{DynamicResource LightText}" BorderThickness="0,0,1,0" />
 
             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                <Button HorizontalAlignment="Left">
+                <Button HorizontalAlignment="Left" Style="{DynamicResource MenuButton}">
                     <StackPanel Orientation="Horizontal">
-                        <Image></Image>
-                        <TextBlock>Home</TextBlock>
+                        <Image Source="/Images/home_icon.png" Style="{DynamicResource MenuIcon}"></Image>
+                        <TextBlock VerticalAlignment="Bottom">Home</TextBlock>
                     </StackPanel>
                 </Button>
 
-                <Button HorizontalAlignment="Left">
+                <Button HorizontalAlignment="Left" Style="{DynamicResource MenuButton}">
                     <StackPanel Orientation="Horizontal">
-                        <Image></Image>
-                        <TextBlock>Saved channels</TextBlock>
+                        <Image Source="/Images/channel_icon.png" Style="{DynamicResource MenuIcon}"></Image>
+                        <TextBlock VerticalAlignment="Bottom">Saved channels</TextBlock>
                     </StackPanel>
                 </Button>
 
-                <Button HorizontalAlignment="Left">
+                <Button HorizontalAlignment="Left" Style="{DynamicResource MenuButton}">
                     <StackPanel Orientation="Horizontal">
-                        <Image></Image>
-                        <TextBlock>Saved videos</TextBlock>
+                        <Image Source="/Images/video_icon.png" Style="{DynamicResource MenuIcon}"></Image>
+                        <TextBlock VerticalAlignment="Bottom">Saved videos</TextBlock>
                     </StackPanel>
                 </Button>
 
-                <Button HorizontalAlignment="Left">
+                <Button HorizontalAlignment="Left" Style="{DynamicResource MenuButton}">
                     <StackPanel Orientation="Horizontal">
-                        <Image></Image>
-                        <TextBlock>About program</TextBlock>
+                        <Image Source="/Images/info_icon.png" Style="{DynamicResource MenuIcon}"></Image>
+                        <TextBlock VerticalAlignment="Bottom">About program</TextBlock>
                     </StackPanel>
                 </Button>
             </StackPanel>
