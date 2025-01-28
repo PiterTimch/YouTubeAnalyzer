@@ -22,7 +22,7 @@ namespace DAL.Enteties
         public string AvatarUrl { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(1000)]
+        [MaxLength(4000)]
         public string Description { get; set; } = string.Empty;
 
         [Required]
