@@ -14,6 +14,9 @@ namespace AnalyzerUI.ViewModels
         public SearchModel SearchModel { get; set; }
         public ObservableCollection<SearchType> SearchTypes { get; set; }
 
+        public ObservableCollection<VideoStatisticsDTO> Videos { get; set; }
+        public ObservableCollection<ChannelStatisticsDTO> Channels { get; set; }
+
         public MainWindow MainWindow { get; set; }
 
         #region RealisedCommands
@@ -43,7 +46,22 @@ namespace AnalyzerUI.ViewModels
             }
         }
 
+        public BaseCommand GetSavedChannelsCommand
+        {
+            get
+            {
+                return _getSavedChannelsCommand ??= new BaseCommand(async _ =>
+                {
+                    this.Channels.Clear();
+                    foreach (var channel in await this._statisticsService.GetAllChannelsAsync())
+                    {
+                        this.Channels.Add(channel);
+                    }
 
+                    this.MainWindow.ShowChannelList();
+                });
+            }
+        }
         #endregion
 
         public AnalyzerViewModel() 
@@ -53,6 +71,9 @@ namespace AnalyzerUI.ViewModels
 
             this.SearchModel = new SearchModel();
             this.SearchTypes = new ObservableCollection<SearchType>((SearchType[])Enum.GetValues(typeof(SearchType)));
+
+            this.Channels = new ObservableCollection<ChannelStatisticsDTO>();
+            this.Videos = new ObservableCollection<VideoStatisticsDTO>();
 
             this._statisticsService = new YouTubeStatisticsService();
             this._apiClient = new YouTubeApiTransferClient();
@@ -73,6 +94,7 @@ namespace AnalyzerUI.ViewModels
         #endregion
 
         private BaseCommand _searchModelCommand;
+        private BaseCommand _getSavedChannelsCommand;
 
         private IYouTubeStatisticsService _statisticsService;
         private IYouTubeApiTransferClient _apiClient;

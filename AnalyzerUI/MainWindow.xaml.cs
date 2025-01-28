@@ -26,5 +26,10 @@ namespace AnalyzerUI
         {
             this.mainFrame.Navigate(new VideoPage(video));
         }
+
+        public void ShowChannelList() 
+        {
+            this.mainFrame.Navigate(new ChannelListPage(this.DataContext as AnalyzerViewModel));
+        }
     }
 }

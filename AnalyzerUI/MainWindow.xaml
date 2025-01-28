@@ -58,7 +58,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button HorizontalAlignment="Left" Style="{DynamicResource MenuButton}">
+                <Button HorizontalAlignment="Left" Style="{DynamicResource MenuButton}" Command="{Binding Path=GetSavedChannelsCommand}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/channel_icon.png" Style="{DynamicResource MenuIcon}"></Image>
                         <TextBlock VerticalAlignment="Bottom">Saved channels</TextBlock>
