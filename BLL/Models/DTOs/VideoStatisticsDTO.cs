@@ -9,6 +9,8 @@
         public int ViewsCount { get; set; }
         public int LikesCount { get; set; }
         public int CommentsCount { get; set; }
+        public string PreviewUrl { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
 
     }
 }

@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using BLL.Models.DTOs;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AnalyzerUI.Pages
 {
@@ -20,9 +9,29 @@ namespace AnalyzerUI.Pages
     /// </summary>
     public partial class VideoPage : Page
     {
-        public VideoPage()
+        public VideoPage(VideoStatisticsDTO video)
         {
             InitializeComponent();
+            InitializeData(video);
+        }
+
+        private void InitializeData(VideoStatisticsDTO video)
+        {
+            this.videoTitleTB.Text = video.Title;
+            this.videoURL.NavigateUri = new Uri(video.Url);
+            this.descriptionTB.Text = video.Description;
+            this.likesCountTB.Text = video.LikesCount.ToString(); // додати форматування
+            this.viewsCountTB.Text = video.ViewsCount.ToString();
+            this.commentsCountTB.Text = video.CommentsCount.ToString();
+
+            //винести в дизайнер
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(video.PreviewUrl, UriKind.RelativeOrAbsolute);
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.EndInit();
+
+            this.previewIMG.ImageSource = bitmap;
         }
     }
 }

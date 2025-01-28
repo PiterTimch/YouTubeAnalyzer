@@ -9,6 +9,11 @@ namespace AnalyzerUI
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            var mainVidndow = new MainWindow(new ViewModels.AnalyzerViewModel());
+            mainVidndow.Show();
+        }
     }
 
 }

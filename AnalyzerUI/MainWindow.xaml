@@ -33,15 +33,11 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <TextBox Style="{DynamicResource StyledTextBox}">Search</TextBox>
-                <Button Style="{DynamicResource StyledButton}" Margin="10,20" FontSize="40" Width="50">⌕</Button>
-                <ComboBox Style="{DynamicResource StyledComboBox}">
-                    <ItemsControl>
-                        <TextBlock>Video</TextBlock>
-                    </ItemsControl>
-                    <ItemsControl>
-                        <TextBlock>Channel</TextBlock>
-                    </ItemsControl>
+                <TextBox Style="{DynamicResource StyledTextBox}" Text="{Binding Path=SearchModel.ItemId}"></TextBox>
+                <Button Style="{DynamicResource StyledButton}" Margin="10,20" FontSize="40" Width="50" Command="{Binding Path=SearchModelCommand}">⌕</Button>
+                <ComboBox Style="{DynamicResource StyledComboBox}" 
+                    ItemsSource="{Binding SearchTypes}" 
+                    SelectedItem="{Binding SearchModel.SearchType, Mode=TwoWay}">
                 </ComboBox>
             </StackPanel>
         </Grid>
@@ -84,7 +80,7 @@
                 </Button>
             </StackPanel>
 
-            <Frame Grid.Column="1"></Frame>
+            <Frame x:Name="mainFrame" Grid.Column="1"></Frame>
         </Grid>
     </Grid>
 </Window>

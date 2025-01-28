@@ -1,13 +1,7 @@
-﻿using System.Text;
+﻿using AnalyzerUI.Pages;
+using AnalyzerUI.ViewModels;
+using BLL.Models.DTOs;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AnalyzerUI
 {
@@ -16,9 +10,21 @@ namespace AnalyzerUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(AnalyzerViewModel viewModel)
         {
             InitializeComponent();
+            viewModel.MainWindow = this;
+            this.DataContext = viewModel;
+        }
+
+        public void ShowChannel(ChannelStatisticsDTO channel) 
+        {
+            this.mainFrame.Navigate(new ChannelPage(channel));
+        }
+
+        public void ShowVideo(VideoStatisticsDTO video)
+        {
+            this.mainFrame.Navigate(new VideoPage(video));
         }
     }
 }

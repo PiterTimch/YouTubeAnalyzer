@@ -28,17 +28,17 @@
 
             <Border Grid.Column="0" CornerRadius="10" Margin="20">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Images/standart_image.png"></ImageBrush>
+                    <ImageBrush x:Name="avatarIMG" ImageSource="/Images/standart_image.png"></ImageBrush>
                 </Border.Background>
             </Border>
 
             <StackPanel Grid.Column="1" Margin="20">
-                <TextBlock Style="{DynamicResource h2}" Text="Channel Name">
-            <Hyperlink NavigateUri="https://www.youtube.com/" Style="{DynamicResource HyperlinkStyle}">🔗</Hyperlink>
+                <TextBlock x:Name="channelNameTB" Style="{DynamicResource h2}" Text="Channel Name">
+            <Hyperlink x:Name="channelURL" NavigateUri="https://www.youtube.com/" Style="{DynamicResource HyperlinkStyle}">🔗</Hyperlink>
                 </TextBlock>
 
                 <TextBlock Style="{DynamicResource h3}" Margin="0,30,0,0">Description:</TextBlock>
-                <TextBlock Style="{DynamicResource RegularText}" Margin="0,10,0,0" TextWrapping="Wrap">
+                <TextBlock x:Name="descriptionTB" Style="{DynamicResource RegularText}" Margin="0,10,0,0" TextWrapping="Wrap">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et ullamcorper nisl. Aliquam non feugiat massa, vitae efficitur lectus. Curabitur fermentum condimentum ligula id pellentesque.
                 </TextBlock>
             </StackPanel>
@@ -53,7 +53,7 @@
                 <Image Grid.Column="0" Source="/Images/subs_icon.png" Style="{DynamicResource MenuIcon}" Width="80"></Image>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
-                    <TextBlock Style="{DynamicResource h2}" Margin="5,0">34 532</TextBlock>
+                    <TextBlock x:Name="subsCountTB" Style="{DynamicResource h2}" Margin="5,0">34 532</TextBlock>
                     <TextBlock Style="{DynamicResource h3}" Margin="5,0">Subscribes</TextBlock>
                 </StackPanel>
             </Grid>
@@ -66,7 +66,7 @@
                 <Image Grid.Column="0" Source="/Images/views_icon.png" Style="{DynamicResource MenuIcon}" Width="80"></Image>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
-                    <TextBlock Style="{DynamicResource h2}" Margin="5,0">374 532</TextBlock>
+                    <TextBlock x:Name="viewsCountTB" Style="{DynamicResource h2}" Margin="5,0">374 532</TextBlock>
                     <TextBlock Style="{DynamicResource h3}" Margin="5,0">Total views</TextBlock>
                 </StackPanel>
             </Grid>
@@ -79,7 +79,7 @@
                 <Image Grid.Column="0" Source="/Images/video_icon.png" Style="{DynamicResource MenuIcon}" Width="80"></Image>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
-                    <TextBlock Style="{DynamicResource h2}" Margin="5,0">532</TextBlock>
+                    <TextBlock x:Name="videosCountTB" Style="{DynamicResource h2}" Margin="5,0">532</TextBlock>
                     <TextBlock Style="{DynamicResource h3}" Margin="5,0">Videos</TextBlock>
                 </StackPanel>
             </Grid>
