@@ -44,7 +44,7 @@ namespace DAL.Repositories
                 Url = $"https://www.youtube.com/channel/{item.Id}",
                 SubsCount = Int32.Parse(item.Statistics.SubscriberCount),
                 VideosCount = Int32.Parse(item.Statistics.VideoCount),
-                ViewsCount = Int32.Parse(item.Statistics.ViewCount),
+                ViewsCount = item.Statistics.ViewCount,
                 AvatarUrl = item.Snippet.Thumbnails.High.Url,
                 Description = item.Snippet.Description
             };
@@ -79,7 +79,7 @@ namespace DAL.Repositories
                 Url = $"https://www.youtube.com/watch?v={item.Id}",
                 CommentsCount = Int32.Parse(item.Statistics.CommentCount),
                 LikesCount = Int32.Parse(item.Statistics.LikeCount),
-                ViewsCount = Int32.Parse(item.Statistics.ViewCount),
+                ViewsCount = item.Statistics.ViewCount,
                 ChannelUrl = $"https://www.youtube.com/channel/{item.Snippet.ChannelId}",
                 Description = item.Snippet.Description,
                 PreviewUrl = item.Snippet.Thumbnails.Maxres.Url

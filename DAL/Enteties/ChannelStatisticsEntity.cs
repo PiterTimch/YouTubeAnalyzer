@@ -25,8 +25,9 @@ namespace DAL.Enteties
         [MaxLength(255)]
         public string Description { get; set; } = string.Empty;
 
-        [Range(0, int.MaxValue)]
-        public int ViewsCount { get; set; }
+        [Required]
+        [MaxLength(100)]
+        public string ViewsCount { get; set; } = string.Empty;
 
         [Range(0, int.MaxValue)]
         public int SubsCount { get; set; }

@@ -80,7 +80,7 @@
                 </Button>
             </StackPanel>
 
-            <Frame x:Name="mainFrame" Grid.Column="1"></Frame>
+            <Frame x:Name="mainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" JournalOwnership="OwnsJournal"></Frame>
         </Grid>
     </Grid>
 </Window>
