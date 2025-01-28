@@ -1,4 +1,5 @@
 ﻿using AnalyzerUI.Additional;
+using AnalyzerUI.ViewModels;
 using BLL.Models.DTOs;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -11,10 +12,11 @@ namespace AnalyzerUI.Pages
     /// </summary>
     public partial class ChannelPage : Page
     {
-        public ChannelPage(ChannelStatisticsDTO channel)
+        public ChannelPage(ChannelStatisticsDTO channel, AnalyzerViewModel viewModel)
         {
             InitializeComponent();
             InitializeData(channel);
+            this.DataContext = viewModel;
         }
 
         private void InitializeData(ChannelStatisticsDTO channel)

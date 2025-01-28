@@ -30,16 +30,55 @@ namespace AnalyzerUI.ViewModels
                     {
                         if (this.SearchModel.SearchType == SearchType.Channel)
                         {
-                            this.MainWindow.ShowChannel(await this._apiClient.GetChannelStatisticsAsync(this.SearchModel.ItemId));
+                            this.SelectedChannel = await this._apiClient.GetChannelStatisticsAsync(this.SearchModel.ItemId);
+                            this.MainWindow.ShowChannel(this.SelectedChannel);
                         }
                         else
                         {
-                            this.MainWindow.ShowVideo(await this._apiClient.GetVideoStatisticsAsync(this.SearchModel.ItemId));
+                            this.SelectedVideo = await this._apiClient.GetVideoStatisticsAsync(this.SearchModel.ItemId);
+                            this.MainWindow.ShowVideo(this.SelectedVideo);
                         }
                     }
                     else
                     {
                         throw new Exception("Invalid search properties");
+                    }
+
+                });
+            }
+        }
+
+        public BaseCommand AddChannelCommand
+        {
+            get
+            {
+                return _addChannelCommand ??= new BaseCommand(async _ =>
+                {
+                    if (this.SelectedChannel != null)
+                    {
+                        await this._statisticsService.AddChannelAsync(this.SelectedChannel);
+                    }
+                    else
+                    {
+                        throw new Exception("Channel is not selected");
+                    }
+
+                });
+            }
+        }
+        public BaseCommand AddVideoCommand
+        {
+            get
+            {
+                return _addVideoCommand ??= new BaseCommand(async _ =>
+                {
+                    if (this.SelectedVideo != null)
+                    {
+                        await this._statisticsService.AddVideoAsync(this.SelectedVideo);
+                    }
+                    else
+                    {
+                        throw new Exception("Video is not selected");
                     }
 
                 });
@@ -94,6 +133,10 @@ namespace AnalyzerUI.ViewModels
         #endregion
 
         private BaseCommand _searchModelCommand;
+
+        private BaseCommand _addChannelCommand;
+        private BaseCommand _addVideoCommand;
+
         private BaseCommand _getSavedChannelsCommand;
 
         private IYouTubeStatisticsService _statisticsService;

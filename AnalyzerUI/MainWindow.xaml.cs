@@ -19,12 +19,12 @@ namespace AnalyzerUI
 
         public void ShowChannel(ChannelStatisticsDTO channel) 
         {
-            this.mainFrame.Navigate(new ChannelPage(channel));
+            this.mainFrame.Navigate(new ChannelPage(channel, this.DataContext as AnalyzerViewModel));
         }
 
         public void ShowVideo(VideoStatisticsDTO video)
         {
-            this.mainFrame.Navigate(new VideoPage(video));
+            this.mainFrame.Navigate(new VideoPage(video, this.DataContext as AnalyzerViewModel));
         }
 
         public void ShowChannelList() 

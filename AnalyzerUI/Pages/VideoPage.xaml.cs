@@ -1,4 +1,5 @@
 ﻿using AnalyzerUI.Additional;
+using AnalyzerUI.ViewModels;
 using BLL.Models.DTOs;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -11,10 +12,11 @@ namespace AnalyzerUI.Pages
     /// </summary>
     public partial class VideoPage : Page
     {
-        public VideoPage(VideoStatisticsDTO video)
+        public VideoPage(VideoStatisticsDTO video, AnalyzerViewModel viewModel)
         {
             InitializeComponent();
             InitializeData(video);
+            this.DataContext = viewModel;
         }
 
         private void InitializeData(VideoStatisticsDTO video)
