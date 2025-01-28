@@ -26,14 +26,7 @@ namespace AnalyzerUI.Pages
             this.viewsCountTB.Text = Designer.FormatNumbers(video.ViewsCount);
             this.commentsCountTB.Text = Designer.FormatNumbers(video.CommentsCount.ToString());
 
-            //винести в дизайнер
-            var bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(video.PreviewUrl, UriKind.RelativeOrAbsolute);
-            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-            bitmap.EndInit();
-
-            this.previewIMG.ImageSource = bitmap;
+            this.previewIMG.ImageSource = Designer.LoadImageByURL(video.PreviewUrl);
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)

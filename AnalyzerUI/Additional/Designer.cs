@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace AnalyzerUI.Additional
 {
@@ -33,6 +35,17 @@ namespace AnalyzerUI.Additional
                 .Select(i => new string(reversed.Skip(i * 3).Take(3).ToArray())));
 
             return new string(reversedResult.Reverse().ToArray());
+        }
+
+        public static BitmapImage LoadImageByURL(string url) 
+        {
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(url, UriKind.RelativeOrAbsolute);
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.EndInit();
+
+            return bitmap;
         }
     }
 }
