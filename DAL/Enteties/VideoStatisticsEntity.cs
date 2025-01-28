@@ -14,11 +14,11 @@ namespace DAL.Enteties
         public string Title { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(255)]
+        [MaxLength(2048)]
         public string Url { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(255)]
+        [MaxLength(2048)]
         public string ChannelUrl { get; set; } = string.Empty;
 
         [Required]
@@ -32,11 +32,11 @@ namespace DAL.Enteties
         public int CommentsCount { get; set; }
 
         [Required]
-        [MaxLength(255)]
+        [MaxLength(2048)]
         public string PreviewUrl { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(255)]
+        [MaxLength(1000)]
         public string Description { get; set; } = string.Empty;
 
         [ForeignKey("Channel")]
