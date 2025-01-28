@@ -1,6 +1,8 @@
-﻿using BLL.Models.DTOs;
+﻿using AnalyzerUI.Additional;
+using BLL.Models.DTOs;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace AnalyzerUI.Pages
 {
@@ -17,12 +19,12 @@ namespace AnalyzerUI.Pages
 
         private void InitializeData(VideoStatisticsDTO video)
         {
-            this.videoTitleTB.Text = video.Title;
+            this.videoTitleTB.Text =  Designer.TrimString(video.Title, 20);
             this.videoURL.NavigateUri = new Uri(video.Url);
-            this.descriptionTB.Text = video.Description;
-            this.likesCountTB.Text = video.LikesCount.ToString(); // додати форматування
-            this.viewsCountTB.Text = video.ViewsCount.ToString();
-            this.commentsCountTB.Text = video.CommentsCount.ToString();
+            this.descriptionTB.Text = Designer.TrimString(video.Description, 500);
+            this.likesCountTB.Text = Designer.FormatNumbers(video.LikesCount.ToString());
+            this.viewsCountTB.Text = Designer.FormatNumbers(video.ViewsCount);
+            this.commentsCountTB.Text = Designer.FormatNumbers(video.CommentsCount.ToString());
 
             //винести в дизайнер
             var bitmap = new BitmapImage();
@@ -32,6 +34,12 @@ namespace AnalyzerUI.Pages
             bitmap.EndInit();
 
             this.previewIMG.ImageSource = bitmap;
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
+            e.Handled = true;
         }
     }
 }
