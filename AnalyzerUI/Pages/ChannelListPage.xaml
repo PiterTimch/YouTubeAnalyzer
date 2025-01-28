@@ -30,8 +30,7 @@
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="{Binding ChannelName}" FontWeight="Bold" FontSize="14" />
-                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" FontSize="12" Foreground="Gray" />
+                                <!--Дописати короткий опис каналу-->
                             </StackPanel>
                             <Button Content="Delete"/>
                         </Grid>
