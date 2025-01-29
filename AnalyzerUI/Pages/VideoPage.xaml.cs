@@ -23,7 +23,7 @@ namespace AnalyzerUI.Pages
         {
             this.videoTitleTB.Text =  Designer.TrimString(video.Title, 20);
             this.videoURL.NavigateUri = new Uri(video.Url);
-            this.descriptionTB.Text = Designer.TrimString(video.Description, 500);
+            this.descriptionTB.Text = Designer.TrimString(video.Description, 300);
             this.likesCountTB.Text = Designer.FormatNumbers(video.LikesCount.ToString());
             this.viewsCountTB.Text = Designer.FormatNumbers(video.ViewsCount);
             this.commentsCountTB.Text = Designer.FormatNumbers(video.CommentsCount.ToString());

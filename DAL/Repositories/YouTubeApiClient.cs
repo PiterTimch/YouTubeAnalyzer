@@ -82,7 +82,7 @@ namespace DAL.Repositories
                 ViewsCount = item.Statistics.ViewCount,
                 ChannelUrl = $"https://www.youtube.com/channel/{item.Snippet.ChannelId}",
                 Description = item.Snippet.Description,
-                PreviewUrl = item.Snippet.Thumbnails.Maxres.Url
+                PreviewUrl = item.Snippet.Thumbnails.High.Url
             };
 
             return videoEntity;

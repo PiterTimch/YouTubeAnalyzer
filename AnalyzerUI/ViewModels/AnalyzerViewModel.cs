@@ -26,22 +26,29 @@ namespace AnalyzerUI.ViewModels
             {
                 return _searchModelCommand ??= new BaseCommand(async _ => 
                 {
-                    if (IsValidSearch()) 
+                    try
                     {
-                        if (this.SearchModel.SearchType == SearchType.Channel)
+                        if (IsValidSearch())
                         {
-                            this.SelectedChannel = await this._apiClient.GetChannelStatisticsAsync(this.SearchModel.ItemId);
-                            this.MainWindow.ShowChannel(this.SelectedChannel);
+                            if (this.SearchModel.SearchType == SearchType.Channel)
+                            {
+                                this.SelectedChannel = await this._apiClient.GetChannelStatisticsAsync(this.SearchModel.ItemId);
+                                this.MainWindow.ShowChannel(this.SelectedChannel);
+                            }
+                            else
+                            {
+                                this.SelectedVideo = await this._apiClient.GetVideoStatisticsAsync(this.SearchModel.ItemId);
+                                this.MainWindow.ShowVideo(this.SelectedVideo);
+                            }
                         }
                         else
                         {
-                            this.SelectedVideo = await this._apiClient.GetVideoStatisticsAsync(this.SearchModel.ItemId);
-                            this.MainWindow.ShowVideo(this.SelectedVideo);
+                            throw new Exception("Invalid search properties");
                         }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        throw new Exception("Invalid search properties");
+                        Designer.ShowErrorMessage(ex.Message);
                     }
 
                 });
@@ -54,13 +61,22 @@ namespace AnalyzerUI.ViewModels
             {
                 return _addChannelCommand ??= new BaseCommand(async _ =>
                 {
-                    if (this.SelectedChannel != null)
+                    try
                     {
-                        await this._statisticsService.AddChannelAsync(this.SelectedChannel);
+                        if (this.SelectedChannel != null)
+                        {
+                            await this._statisticsService.AddChannelAsync(this.SelectedChannel);
+
+                            Designer.ShowInfoMessage("Channel successfully saved. You can view it in \"Saved channels\"");
+                        }
+                        else
+                        {
+                            throw new Exception("Channel is not selected");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        throw new Exception("Channel is not selected");
+                        Designer.ShowErrorMessage(ex.Message);
                     }
 
                 });
@@ -72,13 +88,22 @@ namespace AnalyzerUI.ViewModels
             {
                 return _addVideoCommand ??= new BaseCommand(async _ =>
                 {
-                    if (this.SelectedVideo != null)
+                    try
                     {
-                        await this._statisticsService.AddVideoAsync(this.SelectedVideo);
+                        if (this.SelectedVideo != null)
+                        {
+                            await this._statisticsService.AddVideoAsync(this.SelectedVideo);
+
+                            Designer.ShowInfoMessage("Video successfully saved. You can view it in \"Saved videos\"");
+                        }
+                        else
+                        {
+                            throw new Exception("Video is not selected");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        throw new Exception("Video is not selected");
+                        Designer.ShowErrorMessage(ex.Message);
                     }
 
                 });
@@ -91,13 +116,20 @@ namespace AnalyzerUI.ViewModels
             {
                 return _getSavedChannelsCommand ??= new BaseCommand(async _ =>
                 {
-                    this.Channels.Clear();
-                    foreach (var channel in await this._statisticsService.GetAllChannelsAsync())
+                    try
                     {
-                        this.Channels.Add(channel);
-                    }
+                        this.Channels.Clear();
+                        foreach (var channel in await this._statisticsService.GetAllChannelsAsync())
+                        {
+                            this.Channels.Add(channel);
+                        }
 
-                    this.MainWindow.ShowChannelList();
+                        this.MainWindow.ShowChannelList();
+                    }
+                    catch (Exception ex)
+                    {
+                        Designer.ShowErrorMessage(ex.Message);
+                    }
                 });
             }
         }

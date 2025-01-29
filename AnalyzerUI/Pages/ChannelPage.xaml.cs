@@ -23,7 +23,7 @@ namespace AnalyzerUI.Pages
         {
             this.channelNameTB.Text = Designer.TrimString(channel.ChannelName, 20);
             this.channelURL.NavigateUri = new Uri(channel.Url);
-            this.descriptionTB.Text = Designer.TrimString(channel.Description, 500);
+            this.descriptionTB.Text = Designer.TrimString(channel.Description, 300);
             this.subsCountTB.Text = Designer.FormatNumbers(channel.SubsCount.ToString());
             this.viewsCountTB.Text = Designer.FormatNumbers(channel.ViewsCount);
             this.videosCountTB.Text = Designer.FormatNumbers(channel.VideosCount.ToString());

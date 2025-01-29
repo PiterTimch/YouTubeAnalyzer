@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace AnalyzerUI.Additional
@@ -46,6 +41,16 @@ namespace AnalyzerUI.Additional
             bitmap.EndInit();
 
             return bitmap;
+        }
+
+        public static void ShowInfoMessage(string msg) 
+        {
+            MessageBox.Show(msg, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public static void ShowErrorMessage(string msg) 
+        {
+            MessageBox.Show(msg, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
