@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnalyzerUI"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="720" MinWidth="1280">
+        Title="YouTube analyzer" MinHeight="720" MinWidth="1280" Icon="/Images/prog_icon.png">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                <Button Style="{DynamicResource StyledButton}" BorderThickness="0" FontSize="48">☰</Button>
+                <Button x:Name="menuBT" Style="{DynamicResource StyledButton}" BorderThickness="0" FontSize="48" Click="menuBT_Click">☰</Button>
                 <TextBlock Style="{DynamicResource h1}">YouTubeAnalyzer</TextBlock>
             </StackPanel>
 
@@ -43,7 +43,7 @@
             </StackPanel>
         </Grid>
         
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Name="bodyGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.35*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>

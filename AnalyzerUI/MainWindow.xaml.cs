@@ -42,5 +42,27 @@ namespace AnalyzerUI
 
             this.typesCB.SelectedItem = this.typesCB.Items[0];
         }
+
+        private void menuBT_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._menuState == MenuState.Oppened)
+            {
+                bodyGrid.ColumnDefinitions[0].Width = new GridLength(0, GridUnitType.Star);
+                this._menuState = MenuState.Closed;
+            }
+            else
+            {
+                bodyGrid.ColumnDefinitions[0].Width = new GridLength(0.35, GridUnitType.Star);
+                this._menuState = MenuState.Oppened;
+            }
+        }
+
+        private MenuState _menuState;
+    }
+    
+    public enum MenuState 
+    {
+        Oppened,
+        Closed
     }
 }
