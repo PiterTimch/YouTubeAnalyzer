@@ -34,5 +34,7 @@ namespace DAL.Enteties
 
         [Range(0, int.MaxValue)]
         public int VideosCount { get; set; }
+
+        ICollection<VideoStatisticsEntity> VideoStatistics { get; set; }
     }
 }

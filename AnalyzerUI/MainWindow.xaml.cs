@@ -31,5 +31,11 @@ namespace AnalyzerUI
         {
             this.mainFrame.Navigate(new ChannelListPage(this.DataContext as AnalyzerViewModel));
         }
+
+        private void typesCB_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            this.typesCB.SelectedItem = this.typesCB.Items[0];
+        }
     }
 }

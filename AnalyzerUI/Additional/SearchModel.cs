@@ -8,7 +8,6 @@
 
     public enum SearchType
     {
-        None,
         Channel,
         Video
     }

@@ -35,9 +35,10 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                 <TextBox Style="{DynamicResource StyledTextBox}" Text="{Binding Path=SearchModel.ItemId}"></TextBox>
                 <Button Style="{DynamicResource StyledButton}" Margin="10,20" FontSize="40" Width="50" Command="{Binding Path=SearchModelCommand}">⌕</Button>
-                <ComboBox Style="{DynamicResource StyledComboBox}" 
+                <ComboBox x:Name="typesCB" Style="{DynamicResource StyledComboBox}" 
                     ItemsSource="{Binding SearchTypes}" 
-                    SelectedItem="{Binding SearchModel.SearchType, Mode=TwoWay}">
+                    SelectedItem="{Binding SearchModel.SearchType, Mode=TwoWay}"
+                    Loaded="typesCB_Loaded">
                 </ComboBox>
             </StackPanel>
         </Grid>

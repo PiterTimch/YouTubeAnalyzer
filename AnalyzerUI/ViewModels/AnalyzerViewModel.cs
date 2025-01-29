@@ -155,8 +155,6 @@ namespace AnalyzerUI.ViewModels
         {
             if (this.SearchModel == null)
                 return false;
-            if (this.SearchModel.SearchType == SearchType.None)
-                return false;
             if (String.IsNullOrEmpty(this.SearchModel.ItemId) || String.IsNullOrWhiteSpace(this.SearchModel.ItemId))
                 return false;
 
