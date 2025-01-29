@@ -15,6 +15,8 @@ namespace AnalyzerUI
             InitializeComponent();
             viewModel.MainWindow = this;
             this.DataContext = viewModel;
+
+            this.mainFrame.Navigate(new HomePage());
         }
 
         public void ShowChannel(ChannelStatisticsDTO channel) 
@@ -57,9 +59,19 @@ namespace AnalyzerUI
             }
         }
 
+        private void homeBT_Click(object sender, RoutedEventArgs e)
+        {
+            this.mainFrame.Navigate(new HomePage());
+        }
+
+        private void infoBT_Click(object sender, RoutedEventArgs e)
+        {
+            this.mainFrame.Navigate(new InfoPage());
+        }
+
         private MenuState _menuState;
     }
-    
+
     public enum MenuState 
     {
         Oppened,

@@ -1,0 +1,22 @@
+﻿<Page x:Class="AnalyzerUI.Pages.InfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AnalyzerUI.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="InfoPage" Background="{DynamicResource LightBackground}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <StackPanel>
+        <Image Style="{DynamicResource StandartImage}" Source="../Images/info_icon.png" Height="80" Margin="20"></Image>
+        <TextBlock Style="{DynamicResource h2}" Margin="20" HorizontalAlignment="Center">YouTubeAnalyzer</TextBlock>
+        <TextBlock x:Name="infoText" Style="{DynamicResource RegularText}" HorizontalAlignment="Center" Loaded="infoText_Loaded" MaxWidth="600" TextWrapping="Wrap"></TextBlock>
+    </StackPanel>
+</Page>

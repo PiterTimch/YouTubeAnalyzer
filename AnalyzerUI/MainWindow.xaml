@@ -52,7 +52,7 @@
             <Border Grid.Column="0" BorderBrush="{DynamicResource LightText}" BorderThickness="0,0,1,0" />
 
             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                <Button HorizontalAlignment="Left" Style="{DynamicResource MenuButton}">
+                <Button x:Name="homeBT" HorizontalAlignment="Left" Style="{DynamicResource MenuButton}" Click="homeBT_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/home_icon.png" Style="{DynamicResource MenuIcon}"></Image>
                         <TextBlock VerticalAlignment="Bottom">Home</TextBlock>
@@ -73,7 +73,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button HorizontalAlignment="Left" Style="{DynamicResource MenuButton}">
+                <Button x:Name="infoBT" HorizontalAlignment="Left" Style="{DynamicResource MenuButton}" Click="infoBT_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/info_icon.png" Style="{DynamicResource MenuIcon}"></Image>
                         <TextBlock VerticalAlignment="Bottom">About program</TextBlock>

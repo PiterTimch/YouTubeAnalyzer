@@ -85,7 +85,7 @@ namespace AnalyzerUI.ViewModels
         {
             get
             {
-                return _reviewChannelCommand ??= new BaseCommand(async _ =>
+                return _reviewVideoCommand ??= new BaseCommand(async _ =>
                 {
                     try
                     {
