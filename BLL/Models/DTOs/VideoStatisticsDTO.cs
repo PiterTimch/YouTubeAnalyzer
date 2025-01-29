@@ -11,7 +11,6 @@
         public int CommentsCount { get; set; }
         public string PreviewUrl { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public int ChannelId { get; set; }
-
+        public int? ChannelId { get; set; }
     }
 }
