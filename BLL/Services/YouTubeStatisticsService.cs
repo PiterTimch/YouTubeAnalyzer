@@ -34,12 +34,30 @@ namespace BLL.Services
 
         public async Task DeleteChannelAsync(ChannelStatisticsDTO item)
         {
-            await this._repository.DeleteChannelAsync(this._mapper.Map<ChannelStatisticsEntity>(item));
+            var entity = (await this._repository.GetAllChannelsAsync()).FirstOrDefault(c => c.Url == item.Url);
+
+            if (entity != null)
+            {
+                await this._repository.DeleteChannelAsync(entity);
+            }
+            else
+            {
+                throw new Exception("This channel is not saved");
+            }
         }
 
         public async Task DeleteVideoAsync(VideoStatisticsDTO item)
         {
-            await this._repository.DeleteVideoAsync(this._mapper.Map<VideoStatisticsEntity>(item));
+            var entity = (await this._repository.GetAllVideosAsync()).FirstOrDefault(v => v.Url == item.Url);
+
+            if (entity != null)
+            {
+                await this._repository.DeleteVideoAsync(entity);
+            }
+            else
+            {
+                throw new Exception("This video is not saved");
+            }
         }
 
         public async Task<ICollection<ChannelStatisticsDTO>> GetAllChannelsAsync()

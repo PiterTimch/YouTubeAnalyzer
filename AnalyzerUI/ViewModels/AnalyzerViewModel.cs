@@ -3,6 +3,7 @@ using BLL.Interfaces;
 using BLL.Models.DTOs;
 using BLL.Services;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace AnalyzerUI.ViewModels
 {
@@ -55,6 +56,57 @@ namespace AnalyzerUI.ViewModels
             }
         }
 
+        public BaseCommand ReviewChannelCommand
+        {
+            get
+            {
+                return _reviewChannelCommand ??= new BaseCommand(async _ =>
+                {
+                    try
+                    {
+                        if (this.SelectedChannel != null)
+                        {
+                            this.MainWindow.ShowChannel(this.SelectedChannel);
+                        }
+                        else
+                        {
+                            throw new Exception("Channel is not selected");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Designer.ShowErrorMessage(ex.Message);
+                    }
+
+                });
+            }
+        }
+        public BaseCommand ReviewVideoCommand
+        {
+            get
+            {
+                return _reviewChannelCommand ??= new BaseCommand(async _ =>
+                {
+                    try
+                    {
+                        if (this.SelectedVideo != null)
+                        {
+                            this.MainWindow.ShowVideo(this.SelectedVideo);
+                        }
+                        else
+                        {
+                            throw new Exception("Video is not selected");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Designer.ShowErrorMessage(ex.Message);
+                    }
+
+                });
+            }
+        }
+
         public BaseCommand AddChannelCommand
         {
             get
@@ -62,9 +114,14 @@ namespace AnalyzerUI.ViewModels
                 return _addChannelCommand ??= new BaseCommand(async _ =>
                 {
                     try
-                    {
+                    {   
                         if (this.SelectedChannel != null)
                         {
+                            if ((await this._statisticsService.GetAllChannelsAsync()).FirstOrDefault(c => c.Url == this.SelectedChannel.Url) != null)
+                            {
+                                throw new Exception("This channel is already saved");
+                            }
+
                             await this._statisticsService.AddChannelAsync(this.SelectedChannel);
 
                             Designer.ShowInfoMessage("Channel successfully saved. You can view it in \"Saved channels\"");
@@ -92,9 +149,87 @@ namespace AnalyzerUI.ViewModels
                     {
                         if (this.SelectedVideo != null)
                         {
+                            if ((await this._statisticsService.GetAllVideosAsync()).FirstOrDefault(v => v.Url == this.SelectedVideo.Url) != null)
+                            {
+                                throw new Exception("This video is already saved");
+                            }
+
                             await this._statisticsService.AddVideoAsync(this.SelectedVideo);
 
                             Designer.ShowInfoMessage("Video successfully saved. You can view it in \"Saved videos\"");
+                        }
+                        else
+                        {
+                            throw new Exception("Video is not selected");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Designer.ShowErrorMessage(ex.Message);
+                    }
+
+                });
+            }
+        }
+
+        public BaseCommand RemoveChannelCommand 
+        {
+            get
+            {
+                return _removeChannelCommand ??= new BaseCommand(async _ =>
+                {
+                    try
+                    {
+                        if (this.SelectedChannel != null)
+                        {
+                            var channelVideos = (await this._statisticsService.GetAllVideosAsync()).Where(v => v.ChannelId == this.SelectedChannel.Id);
+
+                            if (channelVideos.Any())
+                            {
+                                if (MessageBox.Show("You have saved this channel's videos. If you delete a channel, its videos will also disappear, continue?", "War", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                                {
+                                    foreach (var video in channelVideos)
+                                    {
+                                        await this._statisticsService.DeleteVideoAsync(video);
+                                    }
+                                }
+                                else
+                                {
+                                    return;
+                                }
+                            }
+
+                            await this._statisticsService.DeleteChannelAsync(this.SelectedChannel);
+                            await ReloadChannelsAsync();
+                            Designer.ShowInfoMessage("Channel deleted successfully");
+                        }
+                        else
+                        {
+                            throw new Exception("Channel is not selected");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Designer.ShowErrorMessage(ex.Message);
+                    }
+
+                });
+            }
+        }
+        public BaseCommand RemoveVideoCommand
+        {
+            get
+            {
+                return _removeVideoCommand ??= new BaseCommand(async _ =>
+                {
+                    try
+                    {
+                        if (this.SelectedVideo != null)
+                        {
+
+                            await this._statisticsService.DeleteVideoAsync(this.SelectedVideo);
+                            await ReloadVideosAsync();
+                            Designer.ShowInfoMessage("Video deleted successfully");
                         }
                         else
                         {
@@ -118,13 +253,28 @@ namespace AnalyzerUI.ViewModels
                 {
                     try
                     {
-                        this.Channels.Clear();
-                        foreach (var channel in await this._statisticsService.GetAllChannelsAsync())
-                        {
-                            this.Channels.Add(channel);
-                        }
+                        await ReloadChannelsAsync();
 
                         this.MainWindow.ShowChannelList();
+                    }
+                    catch (Exception ex)
+                    {
+                        Designer.ShowErrorMessage(ex.Message);
+                    }
+                });
+            }
+        }
+        public BaseCommand GetSavedVideosCommand
+        {
+            get
+            {
+                return _getSavedVideosCommand ??= new BaseCommand(async _ =>
+                {
+                    try
+                    {
+                        await ReloadVideosAsync();
+
+                        this.MainWindow.ShowVideoList();
                     }
                     catch (Exception ex)
                     {
@@ -162,12 +312,36 @@ namespace AnalyzerUI.ViewModels
         }
         #endregion
 
+        private async Task ReloadChannelsAsync()
+        {
+            this.Channels.Clear();
+            foreach (var channel in await this._statisticsService.GetAllChannelsAsync())
+            {
+                this.Channels.Add(channel);
+            }
+        }
+        private async Task ReloadVideosAsync()
+        {
+            this.Videos.Clear();
+            foreach (var video in await this._statisticsService.GetAllVideosAsync())
+            {
+                this.Videos.Add(video);
+            }
+        }
+
         private BaseCommand _searchModelCommand;
 
         private BaseCommand _addChannelCommand;
         private BaseCommand _addVideoCommand;
 
+        private BaseCommand _removeChannelCommand;
+        private BaseCommand _removeVideoCommand;
+
         private BaseCommand _getSavedChannelsCommand;
+        private BaseCommand _getSavedVideosCommand;
+
+        private BaseCommand _reviewChannelCommand;
+        private BaseCommand _reviewVideoCommand;
 
         private IYouTubeStatisticsService _statisticsService;
         private IYouTubeApiTransferClient _apiClient;

@@ -66,7 +66,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button HorizontalAlignment="Left" Style="{DynamicResource MenuButton}">
+                <Button HorizontalAlignment="Left" Style="{DynamicResource MenuButton}" Command="{Binding GetSavedVideosCommand}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/video_icon.png" Style="{DynamicResource MenuIcon}"></Image>
                         <TextBlock VerticalAlignment="Bottom">Saved videos</TextBlock>

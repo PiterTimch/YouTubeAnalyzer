@@ -32,6 +32,11 @@ namespace AnalyzerUI
             this.mainFrame.Navigate(new ChannelListPage(this.DataContext as AnalyzerViewModel));
         }
 
+        public void ShowVideoList()
+        {
+            this.mainFrame.Navigate(new VideoListPage(this.DataContext as AnalyzerViewModel));
+        }
+
         private void typesCB_Loaded(object sender, RoutedEventArgs e)
         {
 
