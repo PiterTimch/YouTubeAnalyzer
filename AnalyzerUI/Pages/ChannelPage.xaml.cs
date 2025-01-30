@@ -2,7 +2,6 @@
 using AnalyzerUI.ViewModels;
 using BLL.Models.DTOs;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 
 namespace AnalyzerUI.Pages
@@ -23,7 +22,7 @@ namespace AnalyzerUI.Pages
         {
             this.channelNameTB.Text = Designer.TrimString(channel.ChannelName, 20);
             this.channelURL.NavigateUri = new Uri(channel.Url);
-            this.descriptionTB.Text = Designer.TrimString(channel.Description, 300);
+            this.descriptionTB.Text = Designer.TrimString(channel.Description, 150);
             this.subsCountTB.Text = Designer.FormatNumbers(channel.SubsCount.ToString());
             this.viewsCountTB.Text = Designer.FormatNumbers(channel.ViewsCount);
             this.videosCountTB.Text = Designer.FormatNumbers(channel.VideosCount.ToString());
