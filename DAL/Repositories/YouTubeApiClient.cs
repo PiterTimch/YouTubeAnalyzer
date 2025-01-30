@@ -46,7 +46,9 @@ namespace DAL.Repositories
                 VideosCount = Int32.Parse(item.Statistics.VideoCount),
                 ViewsCount = item.Statistics.ViewCount,
                 AvatarUrl = item.Snippet.Thumbnails.High.Url,
-                Description = item.Snippet.Description
+                Description = item.Snippet.Description.Length > 4000
+                ? item.Snippet.Description.Substring(0, 4000)
+                : item.Snippet.Description
             };
 
             return channelEntity;
@@ -81,7 +83,9 @@ namespace DAL.Repositories
                 LikesCount = Int32.Parse(item.Statistics.LikeCount),
                 ViewsCount = item.Statistics.ViewCount,
                 ChannelUrl = $"https://www.youtube.com/channel/{item.Snippet.ChannelId}",
-                Description = item.Snippet.Description,
+                Description = item.Snippet.Description.Length > 4000
+                ? item.Snippet.Description.Substring(0, 4000)
+                : item.Snippet.Description,
                 PreviewUrl = item.Snippet.Thumbnails.High.Url
             };
 
