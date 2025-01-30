@@ -30,7 +30,7 @@
                                 <ColumnDefinition Width="5*" />
                             </Grid.ColumnDefinitions>
 
-                            <Border Grid.Column="0" CornerRadius="10" Margin="20" Padding="40">
+                            <Border CornerRadius="10" Margin="20" Padding="80, 50">
                                 <Border.Background>
                                     <ImageBrush ImageSource="{Binding PreviewUrl}" Stretch="UniformToFill"></ImageBrush>
                                 </Border.Background>

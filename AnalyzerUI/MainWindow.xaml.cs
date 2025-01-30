@@ -54,7 +54,7 @@ namespace AnalyzerUI
             }
             else
             {
-                bodyGrid.ColumnDefinitions[0].Width = new GridLength(0.35, GridUnitType.Star);
+                bodyGrid.ColumnDefinitions[0].Width = new GridLength(0.4, GridUnitType.Star);
                 this._menuState = MenuState.Oppened;
             }
         }

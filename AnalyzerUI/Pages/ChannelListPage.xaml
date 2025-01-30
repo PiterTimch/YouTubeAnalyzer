@@ -30,11 +30,13 @@
                                 <ColumnDefinition Width="5*" />
                             </Grid.ColumnDefinitions>
 
-                            <Border Grid.Column="0" CornerRadius="10" Margin="20" Padding="40">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{Binding AvatarUrl}" Stretch="UniformToFill"></ImageBrush>
-                                </Border.Background>
-                            </Border>
+                            <Viewbox Grid.Column="0">
+                                <Border CornerRadius="10" Margin="20" Padding="40">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding AvatarUrl}" Stretch="UniformToFill"></ImageBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Viewbox>
 
                             <StackPanel Grid.Column="1">
                                 <TextBlock Style="{DynamicResource h2}" Margin="5,20,5,5" Text="{Binding ChannelName}"></TextBlock>
