@@ -172,7 +172,7 @@ namespace AnalyzerUI.ViewModels
             }
         }
 
-        public BaseCommand RemoveChannelCommand 
+        public BaseCommand RemoveChannelCommand
         {
             get
             {
@@ -194,6 +194,13 @@ namespace AnalyzerUI.ViewModels
                                     }
                                 }
                                 else
+                                {
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                if (MessageBox.Show($"Are you sure you want to delete channel {this.SelectedChannel.ChannelName}?", "War", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
                                 {
                                     return;
                                 }
@@ -226,6 +233,10 @@ namespace AnalyzerUI.ViewModels
                     {
                         if (this.SelectedVideo != null)
                         {
+                            if (MessageBox.Show($"Are you sure you want to delete video {this.SelectedVideo.Title}?", "War", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                            {
+                                return;
+                            }
 
                             await this._statisticsService.DeleteVideoAsync(this.SelectedVideo);
                             await ReloadVideosAsync();
